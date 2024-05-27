@@ -16,6 +16,11 @@ const CONFIG = {
       year: "2021-2024",
       href: "https://blossomcraft.org",
     },
+    {
+      name: `DEV`,
+      year: "2020-2024",
+      href: "https://dev.to",
+    },
   ],
   // blog setting (required)
   blog: {
