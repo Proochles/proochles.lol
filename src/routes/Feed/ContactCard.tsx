@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import React from "react"
-import {FaSquareXTwitter} from "react-icons/fa6";
+import {FaSquareXTwitter} from "react-icons/hi";
 import {
   AiFillLinkedin,
   AiOutlineGithub,
