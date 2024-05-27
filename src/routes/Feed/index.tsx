@@ -20,15 +20,6 @@ const Feed: React.FC<Props> = () => {
 
   return (
     <StyledWrapper>
-      <div className="mid">
-        <MobileProfileCard />
-        <SearchInput value={q} onChange={(e) => setQ(e.target.value)} />
-        <FeedHeader />
-        <PostList q={q} />
-        <div className="footer">
-          <Footer />
-        </div>
-      </div>
       <div
         className="rt"
         css={{
@@ -38,6 +29,15 @@ const Feed: React.FC<Props> = () => {
         <ProfileCard />
         <ServiceCard />
         <ContactCard />
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
+      <div className="mid">
+        <MobileProfileCard />
+        <SearchInput value={q} onChange={(e) => setQ(e.target.value)} />
+        <FeedHeader />
+        <PostList q={q} />
         <div className="footer">
           <Footer />
         </div>
