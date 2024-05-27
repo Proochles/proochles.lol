@@ -24,7 +24,7 @@ const CONFIG = {
     {
       name: `Tickets`,
       year: "2022-2023",
-      href: "https://dev.to",
+      href: "https://ticketsbot.net",
     },
   ],
   // blog setting (required)
