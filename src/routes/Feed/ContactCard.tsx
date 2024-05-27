@@ -1,12 +1,12 @@
 import styled from "@emotion/styled"
 import React from "react"
+import { FaSquareXTwitter } from "react-icons/fa6";
 import {
   AiFillLinkedin,
   AiOutlineGithub,
   AiOutlineInstagram,
   AiOutlineMail,
 } from "react-icons/ai"
-import { FaSquareXTwitter } from "react-icons/fa6";
 import { CONFIG } from "site.config"
 import { Emoji } from "src/components/Emoji"
 
