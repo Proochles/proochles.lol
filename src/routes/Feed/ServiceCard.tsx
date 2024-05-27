@@ -9,7 +9,7 @@ const ServiceCard: React.FC = () => {
   return (
     <>
       <StyledTitle>
-        <Emoji>🌟</Emoji> Service
+        <Emoji>🌟</Emoji> Commitments
       </StyledTitle>
       <StyledWrapper>
         {CONFIG.projects.map((project, idx) => (
@@ -66,7 +66,7 @@ const StyledWrapper = styled.div`
       line-height: 1.25rem;
     }
     .year {
-      font-size: 0.675rem;
+      font-size: 0.575rem;
       line-height: 1.25rem;
     }
   }
