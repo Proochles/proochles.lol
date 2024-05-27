@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import React from "react"
-import {FaSquareXTwitter} from "react-icons/fa6";
+import {BsTwitterX} from "react-icons/bs";
 import {
   AiFillLinkedin,
   AiOutlineGithub,
@@ -33,7 +33,7 @@ const ContactCard: React.FC = () => {
             rel="noreferrer"
             target="_blank"
           >
-            <FaSquareXTwitter className="icon" />
+            <BsTwitterX className="icon" />
             <div className="name">x</div>
           </a>
         )}
