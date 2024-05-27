@@ -6,9 +6,6 @@ const CONFIG = {
     role: "management consultant",
     bio: "i'm up, you're down",
     email: "me@proochles.lol",
-    linkedin: "",
-    github: "",
-    instagram: "",
     x: "proochles",
   },
   projects: [
