@@ -65,5 +65,9 @@ const StyledWrapper = styled.div`
       font-size: 0.875rem;
       line-height: 1.25rem;
     }
+    .year {
+      font-size: 0.675rem;
+      line-height: 1.25rem;
+    }
   }
 `
