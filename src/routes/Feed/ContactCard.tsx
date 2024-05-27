@@ -5,8 +5,8 @@ import {
   AiOutlineGithub,
   AiOutlineInstagram,
   AiOutlineMail,
-  FaSquareXTwitter,
 } from "react-icons/ai"
+import { AiOutlineTwitter } from "react-icons/ai";
 import { CONFIG } from "site.config"
 import { Emoji } from "src/components/Emoji"
 
