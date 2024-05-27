@@ -13,6 +13,7 @@ const CONFIG = {
   projects: [
     {
       name: `blossomcraft`,
+      year: "2022-2024",
       href: "https://blossomcraft.org",
     },
   ],
