@@ -1,36 +1,36 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { getCookie, setCookie } from "cookies-next"
-import { useEffect } from "react"
-import { queryKey } from "src/constants/queryKey"
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getCookie, setCookie } from "cookies-next";
+import { useEffect, useCallback } from "react";
+import { queryKey } from "src/constants/queryKey";
 
-type Scheme = "light" | "dark"
-type SetScheme = (scheme: Scheme) => void
+type Scheme = "light" | "dark";
+type SetScheme = (scheme: Scheme) => void;
 
 const useScheme = (): [Scheme, SetScheme] => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const { data } = useQuery({
     queryKey: queryKey.scheme(),
     enabled: false,
     initialData: "light",
-  })
+  });
 
-  const scheme = data === "light" ? "light" : "dark"
+  const scheme = data === "light" ? "light" : "dark";
 
-  const setScheme = (scheme: "light" | "dark") => {
-    setCookie("scheme", scheme)
-
-    queryClient.setQueryData(queryKey.scheme(), scheme)
-  }
+  // Memoize setScheme with useCallback
+  const setScheme = useCallback((scheme: Scheme) => {
+    setCookie("scheme", scheme);
+    queryClient.setQueryData(queryKey.scheme(), scheme);
+  }, [queryClient]);
 
   useEffect(() => {
-    if (!window) return
+    if (typeof window === "undefined") return;
 
-    const scheme = getCookie("scheme")
-    setScheme(scheme === "light" ? "light" : "dark")
-  }, [])
+    const savedScheme = getCookie("scheme") as Scheme;
+    setScheme(savedScheme === "light" ? "light" : "dark");
+  }, [setScheme]); // Add setScheme to the dependency array
 
-  return [scheme, setScheme]
-}
+  return [scheme, setScheme];
+};
 
-export default useScheme
+export default useScheme;

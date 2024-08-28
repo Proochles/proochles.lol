@@ -1,37 +1,40 @@
-import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
-import PostCard from "src/routes/Feed/PostList/PostCard"
-import { DEFAULT_CATEGORY } from "src/constants"
-import usePostsQuery from "src/hooks/usePostsQuery"
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import PostCard from "src/routes/Feed/PostList/PostCard";
+import { DEFAULT_CATEGORY } from "src/constants";
+import usePostsQuery from "src/hooks/usePostsQuery";
 
 type Props = {
-  q: string
-}
+  q: string;
+};
 
 const PostList: React.FC<Props> = ({ q }) => {
-  const router = useRouter()
-  const data = usePostsQuery()
-  const [filteredPosts, setFilteredPosts] = useState(data)
+  const router = useRouter();
+  const data = usePostsQuery();
+  const [filteredPosts, setFilteredPosts] = useState(data);
 
-  const currentTag = `${router.query.tag || ``}` || undefined
-  const currentCategory = `${router.query.category || ``}` || DEFAULT_CATEGORY
-  const currentOrder = `${router.query.order || ``}` || "desc"
+  const currentTag = `${router.query.tag || ``}` || undefined;
+  const currentCategory = `${router.query.category || ``}` || DEFAULT_CATEGORY;
+  const currentOrder = `${router.query.order || ``}` || "desc";
 
   useEffect(() => {
+    if (!data) return; // Prevent running the effect if data is not available
+
     setFilteredPosts(() => {
-      let newFilteredPosts = data
+      let newFilteredPosts = data;
+      
       // keyword
       newFilteredPosts = newFilteredPosts.filter((post) => {
-        const tagContent = post.tags ? post.tags.join(" ") : ""
-        const searchContent = post.title + post.summary + tagContent
-        return searchContent.toLowerCase().includes(q.toLowerCase())
-      })
+        const tagContent = post.tags ? post.tags.join(" ") : "";
+        const searchContent = post.title + post.summary + tagContent;
+        return searchContent.toLowerCase().includes(q.toLowerCase());
+      });
 
       // tag
       if (currentTag) {
         newFilteredPosts = newFilteredPosts.filter(
           (post) => post && post.tags && post.tags.includes(currentTag)
-        )
+        );
       }
 
       // category
@@ -39,29 +42,32 @@ const PostList: React.FC<Props> = ({ q }) => {
         newFilteredPosts = newFilteredPosts.filter(
           (post) =>
             post && post.category && post.category.includes(currentCategory)
-        )
-      }
-      // order
-      if (currentOrder !== "desc") {
-        newFilteredPosts = newFilteredPosts.reverse()
+        );
       }
 
-      return newFilteredPosts
-    })
-  }, [q, currentTag, currentCategory, currentOrder, setFilteredPosts])
+      // order
+      if (currentOrder !== "desc") {
+        newFilteredPosts = newFilteredPosts.reverse();
+      }
+
+      return newFilteredPosts;
+    });
+  }, [q, currentTag, currentCategory, currentOrder, data]); // Include data in the dependency array
 
   return (
     <>
       <div className="my-2">
         {!filteredPosts.length && (
-                    <p className="text-gray-500 dark:text-gray-300">📢 OFFICIAL SITE ANNOUNCEMENT: You may not see posts here for awhile, I'm currently busy figuring out how I want to approach the ever approaching transition to adulthood, I'll try to think something up to write eventually ;).</p>
+          <p className="text-gray-500 dark:text-gray-300">
+            📢 OFFICIAL SITE ANNOUNCEMENT: You may not see posts here for awhile, I'm currently busy figuring out how I want to approach the ever approaching transition to adulthood, I'll try to think something up to write eventually ;).
+          </p>
         )}
         {filteredPosts.map((post) => (
           <PostCard key={post.id} data={post} />
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PostList
+export default PostList;
