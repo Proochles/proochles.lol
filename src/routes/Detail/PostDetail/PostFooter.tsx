@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useRouter } from "next/router"
 import React from "react"
+import usePostQuery from "src/hooks/usePostQuery"
 
 type Props = {}
 
@@ -9,12 +10,29 @@ const Footer: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <a onClick={() => router.push("/")}>← Back</a>
-      <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-        ↑ Top
-      </a>
     </StyledWrapper>
   )
 }
+
+const PostDetail: React.FC<Props> = () => {
+const data = usePostQuery()
+
+    if (!data) return null;
+
+  const scrolling = (data.scrolling && data.scrolling?.[0]) || undefined;
+
+  return (
+    <StyledWrapper>
+      {scrolling === 'enabled' ? (
+        <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          ↑ Top
+        </a>
+      ) : (
+        <span>↑ Top</span>
+      )}
+    </StyledWrapper>
+  );
+};
 
 export default Footer
 
