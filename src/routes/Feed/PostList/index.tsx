@@ -59,7 +59,7 @@ const PostList: React.FC<Props> = ({ q }) => {
       <div className="my-2">
         {!filteredPosts.length && (
           <p className="text-gray-500 dark:text-gray-300">
-            📢 OFFICIAL SITE ANNOUNCEMENT: You may not see posts here for awhile, I'm currently busy figuring out how I want to approach the ever approaching transition to adulthood, I'll try to think something up to write eventually ;).
+            📢 OFFICIAL SITE ANNOUNCEMENT: You may not see posts here for awhile, I&apos;m currently busy figuring out how I want to approach the ever-approaching transition to adulthood. I&apos;ll try to think something up to write eventually ;).
           </p>
         )}
         {filteredPosts.map((post) => (
