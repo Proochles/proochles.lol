@@ -1,23 +1,23 @@
-import styled from "@emotion/styled"
-import { useRouter } from "next/router"
-import React from "react"
-import usePostQuery from "src/hooks/usePostQuery"
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+import React from "react";
+import usePostQuery from "src/hooks/usePostQuery";
 
-type Props = {}
+type Props = {};
 
 const Footer: React.FC<Props> = () => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <StyledWrapper>
       <a onClick={() => router.push("/")}>← Back</a>
     </StyledWrapper>
-  )
-}
+  );
+};
 
 const PostDetail: React.FC<Props> = () => {
-const data = usePostQuery()
+  const data = usePostQuery();
 
-    if (!data) return null;
+  if (!data) return null;
 
   const scrolling = (data.scrolling && data.scrolling?.[0]) || undefined;
 
@@ -34,7 +34,8 @@ const data = usePostQuery()
   );
 };
 
-export default Footer
+// Update the export to match the component you want to export
+export default PostDetail;
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -49,4 +50,4 @@ const StyledWrapper = styled.div`
       color: ${({ theme }) => theme.colors.gray12};
     }
   }
-`
+`;
