@@ -17,6 +17,7 @@ const CONFIG = {
     {
       name: `DEV`,
       year: "2020-2024",
+      desciption: "Content/Tag Moderation",
       href: "https://dev.to",
     },
     {

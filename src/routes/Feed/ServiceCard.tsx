@@ -20,8 +20,13 @@ const ServiceCard: React.FC = () => {
             target="_blank"
           >
             <AiFillCodeSandboxCircle className="icon" />
-            <div className="name">{project.name}</div>
-            <div className="year">{project.year}</div>
+            <div className="content">
+              <div className="name">{project.name}</div>
+              <div className="year">{project.year}</div>
+              {project.description && (
+                <div className="description">{project.description}</div>
+              )}
+            </div>
           </a>
         ))}
       </StyledWrapper>
@@ -44,30 +49,49 @@ const StyledWrapper = styled.div`
   border-radius: 1rem;
   background-color: ${({ theme }) =>
     theme.scheme === "light" ? "white" : theme.colors.gray4};
+    
   > a {
     display: flex;
-    padding: 0.75rem;
+    padding: 1rem;
     gap: 0.75rem;
-    align-items: center;
+    align-items: flex-start;
     border-radius: 1rem;
     color: ${({ theme }) => theme.colors.gray11};
     cursor: pointer;
+    text-decoration: none;
 
     :hover {
       color: ${({ theme }) => theme.colors.gray12};
       background-color: ${({ theme }) => theme.colors.gray5};
     }
+
     .icon {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 1.75rem;
+      line-height: 2.25rem;
     }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
     .name {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: bold;
+    }
+
+    .year {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: ${({ theme }) => theme.colors.gray8};
+    }
+
+    .description {
       font-size: 0.875rem;
       line-height: 1.25rem;
-    }
-    .year {
-      font-size: 0.575rem;
-      line-height: 1.25rem;
+      color: ${({ theme }) => theme.colors.gray9};
+      margin-top: 0.5rem;
     }
   }
 `
